@@ -1,0 +1,1366 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Energy and Water",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/v1/categoria_servicio": {
+            "get": {
+                "summary": "Obtener todas las categorías de servicio",
+                "operationId": "getAllCategoriasServicio",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar una nueva categoría de servicio",
+                "operationId": "addCategoriaServicio",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "imagen",
+                                    "texto",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Información de Categoría de Servicio agregada con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/v1/categoria_servicio/{id}": {
+            "get": {
+                "summary": "Obtener una categoría de servicio por ID",
+                "operationId": "getCategoriaServicioById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoría de servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "No se encontraron datos"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear una categoría de servicio",
+                "operationId": "updateOrCreateCategoriaServicio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoría de servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "imagen",
+                                    "texto",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de categoria_servicio actualizada con éxito"
+                    },
+                    "201": {
+                        "description": "Información de categoria_servicio agregada con éxito"
+                    },
+                    "409": {
+                        "description": "Ya existe un registro con los datos proporcionados"
+                    },
+                    "500": {
+                        "description": "Error al procesar la solicitud"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar una categoría de servicio por ID",
+                "operationId": "deleteCategoriaServicioById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoría de servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información de categoria_servicio eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "No se encontró el id"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente una categoría de servicio",
+                "operationId": "partialUpdateCategoriaServicio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoría de servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de categoria servicio actualizada con éxito"
+                    },
+                    "400": {
+                        "description": "No hay datos para actualizar"
+                    },
+                    "404": {
+                        "description": "No se encontró el id"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/v1/equipo/{id}": {
+            "get": {
+                "summary": "Obtener un equipo por ID",
+                "operationId": "getEquipoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "Equipo no encontrado"
+                    },
+                    "500": {
+                        "description": "Error al recuperar el equipo"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear un equipo",
+                "operationId": "updateOrCreateEquipo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tipo",
+                                    "texto",
+                                    "activo",
+                                    "imagenes"
+                                ],
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "nombre",
+                                                "imagen",
+                                                "activo"
+                                            ],
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Equipo actualizado con éxito"
+                    },
+                    "201": {
+                        "description": "Equipo creado con éxito"
+                    },
+                    "404": {
+                        "description": "Equipo no encontrado"
+                    },
+                    "500": {
+                        "description": "Error al actualizar o crear el equipo"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar un equipo por ID",
+                "operationId": "deleteEquipo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Equipo eliminado con éxito"
+                    },
+                    "404": {
+                        "description": "Equipo no encontrado"
+                    },
+                    "500": {
+                        "description": "Error al eliminar el equipo"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente un equipo",
+                "operationId": "partialUpdateEquipo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del equipo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Equipo actualizado con éxito"
+                    },
+                    "404": {
+                        "description": "Equipo no encontrado"
+                    },
+                    "500": {
+                        "description": "Error al actualizar el equipo"
+                    }
+                }
+            }
+        },
+        "/v1/equipo": {
+            "get": {
+                "summary": "Obtener todos los equipos",
+                "operationId": "getAllEquipos",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar un nuevo equipo",
+                "operationId": "addEquipo",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tipo",
+                                    "texto",
+                                    "activo",
+                                    "imagenes"
+                                ],
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "nombre",
+                                                "imagen",
+                                                "activo"
+                                            ],
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Equipo creado con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    },
+                    "500": {
+                        "description": "Error al agregar el equipo"
+                    }
+                }
+            }
+        },
+        "/v1/historia": {
+            "get": {
+                "summary": "Obtener todas las historias",
+                "operationId": "getAllHistorias",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar una nueva historia",
+                "operationId": "addHistoria",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tipo",
+                                    "texto",
+                                    "activo",
+                                    "imagenes"
+                                ],
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "nombre",
+                                                "imagen",
+                                                "activo"
+                                            ],
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Historia creada con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    },
+                    "500": {
+                        "description": "Error al agregar la historia"
+                    }
+                }
+            }
+        },
+        "/v1/historia/{id}": {
+            "get": {
+                "summary": "Obtener una historia por ID",
+                "operationId": "getHistoriaById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la historia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "Historia no encontrada"
+                    },
+                    "500": {
+                        "description": "Error al recuperar la historia"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear una historia",
+                "operationId": "updateHistoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la historia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tipo",
+                                    "texto",
+                                    "activo",
+                                    "imagenes"
+                                ],
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "nombre",
+                                                "imagen",
+                                                "activo"
+                                            ],
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Historia actualizada con éxito"
+                    },
+                    "201": {
+                        "description": "Historia creada con éxito"
+                    },
+                    "404": {
+                        "description": "Historia no encontrada"
+                    },
+                    "500": {
+                        "description": "Error al actualizar o crear la historia"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar una historia por ID",
+                "operationId": "deleteHistoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la historia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Historia eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Historia no encontrada"
+                    },
+                    "500": {
+                        "description": "Error al eliminar la historia"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente una historia",
+                "operationId": "partialUpdateHistoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la historia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    },
+                                    "imagenes": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "imagen": {
+                                                    "type": "string"
+                                                },
+                                                "activo": {
+                                                    "type": "boolean"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Historia actualizada con éxito"
+                    },
+                    "404": {
+                        "description": "Historia no encontrada"
+                    },
+                    "500": {
+                        "description": "Error al actualizar la historia"
+                    }
+                }
+            }
+        },
+        "/v1/info_contacto": {
+            "get": {
+                "summary": "Obtener toda la información de contacto",
+                "operationId": "getAllInfoContacto",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar nueva información de contacto",
+                "operationId": "addInfoContacto",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "texto",
+                                    "texto_adicional",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "texto_adicional": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Información de contacto creada con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/v1/info_contacto/{id}": {
+            "get": {
+                "summary": "Obtener información de contacto por ID",
+                "operationId": "getInfoContactoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de contacto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "Información de contacto no encontrada"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear información de contacto por ID",
+                "operationId": "updateInfoContacto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de contacto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "texto",
+                                    "texto_adicional",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "texto_adicional": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de contacto actualizada con éxito"
+                    },
+                    "201": {
+                        "description": "Información de contacto creada con éxito"
+                    },
+                    "404": {
+                        "description": "Información de contacto no encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar información de contacto por ID",
+                "operationId": "deleteInfoContacto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de contacto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información de contacto eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Información de contacto no encontrada"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente información de contacto por ID",
+                "operationId": "partialUpdateInfoContacto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de contacto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "texto_adicional": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de contacto actualizada con éxito"
+                    },
+                    "404": {
+                        "description": "Información de contacto no encontrada"
+                    }
+                }
+            }
+        },
+        "/v1/mantenimiento_info": {
+            "get": {
+                "summary": "Obtener toda la información de mantenimiento",
+                "operationId": "getAllMantenimientoInfo",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "No se encontraron datos"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar nueva información de mantenimiento",
+                "operationId": "addMantenimientoInfo",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "texto",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Información de mantenimiento creada con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/v1/mantenimiento_info/{id}": {
+            "get": {
+                "summary": "Obtener información de mantenimiento por ID",
+                "operationId": "getMantenimientoInfoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de mantenimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear información de mantenimiento por ID",
+                "operationId": "updateMantenimientoInfo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de mantenimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "texto",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de mantenimiento actualizada con éxito"
+                    },
+                    "201": {
+                        "description": "Información de mantenimiento creada con éxito"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar información de mantenimiento por ID",
+                "operationId": "deleteMantenimientoInfo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de mantenimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información de mantenimiento eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente información de mantenimiento por ID",
+                "operationId": "partialUpdateMantenimientoInfo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la información de mantenimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "texto": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Información de mantenimiento actualizada con éxito"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "400": {
+                        "description": "No hay datos para actualizar"
+                    }
+                }
+            }
+        },
+        "/v1/pregunta_frecuente": {
+            "get": {
+                "summary": "Obtener todas las preguntas frecuentes",
+                "operationId": "getAllPreguntasFrecuentes",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "No se encontraron datos"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Agregar nueva pregunta frecuente",
+                "operationId": "createPreguntaFrecuente",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "pregunta",
+                                    "respuesta",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "pregunta": {
+                                        "type": "string"
+                                    },
+                                    "respuesta": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pregunta frecuente creada con éxito"
+                    },
+                    "400": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/v1/pregunta_frecuente/{id}": {
+            "get": {
+                "summary": "Obtener una pregunta frecuente por ID",
+                "operationId": "getPreguntaFrecuenteById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la pregunta frecuente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa"
+                    },
+                    "404": {
+                        "description": "Pregunta frecuente no existe"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar o crear una pregunta frecuente por ID",
+                "operationId": "updatePreguntaFrecuente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la pregunta frecuente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "pregunta",
+                                    "respuesta",
+                                    "activo"
+                                ],
+                                "properties": {
+                                    "pregunta": {
+                                        "type": "string"
+                                    },
+                                    "respuesta": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pregunta frecuente actualizada con éxito"
+                    },
+                    "201": {
+                        "description": "Pregunta frecuente creada con éxito"
+                    },
+                    "404": {
+                        "description": "Pregunta frecuente no encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar una pregunta frecuente por ID",
+                "operationId": "deletePreguntaFrecuente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la pregunta frecuente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pregunta frecuente eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Pregunta frecuente no encontrada"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Actualizar parcialmente una pregunta frecuente por ID",
+                "operationId": "partialUpdatePreguntaFrecuente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la pregunta frecuente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pregunta": {
+                                        "type": "string"
+                                    },
+                                    "respuesta": {
+                                        "type": "string"
+                                    },
+                                    "activo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pregunta frecuente actualizada con éxito"
+                    },
+                    "404": {
+                        "description": "Pregunta frecuente no encontrada"
+                    },
+                    "400": {
+                        "description": "No hay datos para actualizar"
+                    }
+                }
+            }
+        }
+    }
+}
